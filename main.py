@@ -164,6 +164,12 @@ async def shipped_inventory_command(ctx: SlashContext):
     else:
         await ctx.send("目前沒有已出貨的庫存")
 
+@slash.slash(name="clear_shipped_inventory", description="清除所有已出貨的庫存")
+@commands.check(is_admin)
+async def clear_shipped_inventory(ctx: SlashContext):
+    shipped_inventory.clear()
+    await ctx.send("所有已出貨的庫存已被清除")
+
 @bot.event
 async def on_ready():
     print(f"已登入為 {bot.user}")
